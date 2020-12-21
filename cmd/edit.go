@@ -17,7 +17,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/polpettone/fooboo/pkg"
+	"github.com/polpettone/fooboos/pkg"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v2"
