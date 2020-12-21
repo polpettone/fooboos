@@ -55,9 +55,15 @@ func handleOpenCommand(args []string) {
 		return
 	}
 
+	browser := viper.GetString("browser")
+
 	for _, url := range urls {
-		cmd := exec.Command("firefox", url)
-		cmd.Start()
+		cmd := exec.Command(browser, url)
+		err := cmd.Start()
+		if err != nil {
+			fmt.Printf("Configured Browser is not installed on system: Detail %v", err)
+			return
+		}
 	}
 
 }
