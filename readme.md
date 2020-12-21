@@ -12,7 +12,7 @@ You can open all URL`s of a fooboo at once in your preferred browser.
 ### How?
 `fooboos open linux` 
 
-this will open all URL`s "behind" the keyword linux. 
+this will open all URL's "behind" the keyword linux. 
 If you have a corresponding fooboos.yaml say: 
 
 ```
