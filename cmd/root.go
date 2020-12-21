@@ -80,7 +80,7 @@ func initConfig() {
 		// Search config in home directory with name ".fooboo" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".fooboo")
+		viper.SetConfigName(".fooboos/config.yml")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
@@ -90,7 +90,7 @@ func initConfig() {
 	} else {
 
 		out := `No Config file found
-Provide a config file named .fooboo in $HOME
+Provide a config file named config.yml in $HOME/.fooboos/
 Format yaml
 Content
 	path_to_fooboos: <path>
