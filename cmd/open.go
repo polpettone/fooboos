@@ -24,7 +24,8 @@ import (
 
 var openCmd = &cobra.Command{
 	Use:   "open",
-	Short: "keyword",
+	Short: "open <keyword>",
+	Long: "open <keyword> will open all URL`s in the configured browser",
 	Run: func(cmd *cobra.Command, args []string) {
 		handleOpenCommand(args)
 	},
