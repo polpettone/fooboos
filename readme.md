@@ -11,15 +11,20 @@ You can open all URL`s of a fooboo at once in your preferred browser.
 
 ### How?
 `fooboos open linux` 
+
 this will open all URL`s "behind" the keyword linux. 
 If you have a corresponding fooboos.yaml say: 
-`entries:
+
+```
+entries:
     linux:
         - https://linuxhint.com
         - https://archlinux.de
-`
+```
+
 ### How can I add a new fooboo
 `fooboos edit`
+
 this will open your configured fooboos.yaml    
 Add a new fooboo, take care of the yaml syntax and save it.
 
