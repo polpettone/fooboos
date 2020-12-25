@@ -17,55 +17,58 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/polpettone/fooboos/pkg"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v2"
 )
 
-
-func NewEditCmd() *cobra.Command {
+func NewCmd() *cobra.Command {
 	return &cobra.Command{
-		Use:   "edit",
-		Short: "edit",
+		Use:   "new <new keyword> <url>",
+		Short: "add a new fooboo",
 		Run: func(cmd *cobra.Command, args []string) {
-			stdout, err := handleEditCommand()
-
+			//TODO: check args lenght
+			stdout, err := handleNewCommand(args[0], args[1])
 			if err != nil {
 				fmt.Println(err)
 			}
-
 			fmt.Fprintf(cmd.OutOrStdout(), stdout)
 		},
 	}
 }
 
-func handleEditCommand() (string, error) {
+func handleNewCommand(newKeyWord string, url string) (string, error) {
 	fooboosFile := viper.GetString("path_to_fooboos")
-	content, err := loadRaw(fooboosFile)
+	fooboos, err := loadFooboos(fooboosFile)
 
 	if err != nil {
 		return "", err
 	}
 
-	result, err := pkg.CaptureInputFromEditor(string(content))
+	for k, e := range fooboos.Entries {
+		if k == newKeyWord {
+			//TODO: better output format
+			o := fmt.Sprintf("keyword already exists with following entries: %v", e )
+			return o, nil
+		}
+	}
 
-	fooboos := &Fooboos{}
-	err = yaml.Unmarshal([]byte(result), &fooboos)
+	fooboos.Entries[newKeyWord] = []string{url}
+	out, err := yaml.Marshal(fooboos)
 	if err != nil {
 		return "", err
 	}
 
-	err = writeRaw(fooboosFile, []byte(result))
+	err = writeRaw(fooboosFile, out)
 
 	if err != nil {
 		return "", err
 	}
 
-	return "saved", nil
+	return fmt.Sprintf("added new fooboo with keyword: %s", newKeyWord), nil
 }
 
 func init() {
-	editCmd := NewEditCmd()
-	rootCmd.AddCommand(editCmd)
+	newCmd := NewCmd()
+	rootCmd.AddCommand(newCmd)
 }
