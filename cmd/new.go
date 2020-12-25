@@ -28,7 +28,7 @@ func NewCmd() *cobra.Command {
 		Short: "add a new fooboo",
 		Run: func(cmd *cobra.Command, args []string) {
 			//TODO: check args lenght
-			stdout, err := handleNewCommand(args[0], args[1])
+			stdout, err := handleNewCommand(args)
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -37,7 +37,15 @@ func NewCmd() *cobra.Command {
 	}
 }
 
-func handleNewCommand(newKeyWord string, url string) (string, error) {
+func handleNewCommand(args []string) (string, error) {
+
+	if len(args) != 2 {
+		return fmt.Sprintf("too few arguments. You need a new keyword and a url"), nil
+	}
+
+	newKeyWord := args[0]
+	url := args[1]
+
 	fooboosFile := viper.GetString("path_to_fooboos")
 	fooboos, err := loadFooboos(fooboosFile)
 
