@@ -84,17 +84,3 @@ func TestFooboos_search(t *testing.T) {
 	}
 }
 
-func TestFoo(t *testing.T) {
-
-	tests := []struct {
-		name string
-		args string
-	}{
-		{"one", "args"},
-	}
-
-	if len(tests) != 1 {
-		t.Errorf("Wanted 1 got %d", len(tests))
-	}
-
-}
