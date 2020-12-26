@@ -20,6 +20,6 @@ func (fooboos Fooboos) search(query string) []string {
 func fuzzySearch(keywords []string, query string) []string {
 	bagSizes := []int{2}
 	cm := closestmatch.New(keywords, bagSizes)
-	result := cm.ClosestN(query, 2)
+	result := cm.ClosestN(query, 4)
 	return result
 }
