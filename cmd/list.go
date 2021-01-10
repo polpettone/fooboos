@@ -40,7 +40,7 @@ func NewListCmd() *cobra.Command {
 }
 
 func handleListCommand() (string, error) {
-	fooboosFile := viper.GetString("path_to_fooboos")
+	fooboosFile := viper.GetString(FooboosFile)
 	fooboos, err := loadFooboos(fooboosFile)
 
 	if err != nil {

@@ -42,7 +42,7 @@ func NewEditCmd() *cobra.Command {
 }
 
 func handleEditCommand(args []string) (string, error) {
-	fooboosFile := viper.GetString("path_to_fooboos")
+	fooboosFile := viper.GetString(FooboosFile)
 
 	if len(args) < 1 {
 		content, err := loadRaw(fooboosFile)

@@ -43,7 +43,7 @@ func handleSearchCommand(args []string) (string, error) {
 		return fmt.Sprintf("you need exactly one argument -> search query"), nil
 	}
 
-	fooboosFile := viper.GetString("path_to_fooboos")
+	fooboosFile := viper.GetString(FooboosFile)
 	fooboos, err := loadFooboos(fooboosFile)
 
 	if err != nil {

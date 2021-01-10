@@ -46,7 +46,7 @@ func handleNewCommand(args []string) (string, error) {
 	newKeyWord := args[0]
 	url := args[1]
 
-	fooboosFile := viper.GetString("path_to_fooboos")
+	fooboosFile := viper.GetString(FooboosFile)
 	fooboos, err := loadFooboos(fooboosFile)
 
 	if err != nil {

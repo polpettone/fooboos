@@ -40,7 +40,7 @@ func handleOpenCommand(args []string) {
 
 	keyword := args[0]
 
-	fooboosFile := viper.GetString("path_to_fooboos")
+	fooboosFile := viper.GetString(FooboosFile)
 	fooboos, err := loadFooboos(fooboosFile)
 
 	if err != nil {
