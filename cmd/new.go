@@ -55,13 +55,10 @@ func handleNewCommand(args []string) (string, error) {
 
 	for k, e := range fooboos.Entries {
 		if k == newKeyWord {
-			//TODO: better output format
-
 			urlsInExistingKeyword := ""
 			for _,v := range e {
 				urlsInExistingKeyword += v + "\n"
 			}
-
 			o := fmt.Sprintf("keyword already exists with following entries: \n%s\n", urlsInExistingKeyword)
 			return o, nil
 		}
