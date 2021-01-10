@@ -21,7 +21,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-
 func SearchCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "search",
@@ -54,8 +53,12 @@ func handleSearchCommand(args []string) (string, error) {
 	result := fooboos.search(args[0])
 
 	output := ""
-	for _, v := range result {
-		output += v + "\n"
+	if result == nil {
+		output = "nix gefunden"
+	} else {
+		for _, v := range result {
+			output += v + "\n"
+		}
 	}
 
 	return output, nil

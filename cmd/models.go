@@ -14,11 +14,15 @@ func (fooboos Fooboos) search(query string) []string {
 
 	result := fuzzySearch(keywords, query)
 
+	if len(result) == 1 && result[0] == ""{
+		return nil
+	}
+
 	return result
 }
 
 func fuzzySearch(keywords []string, query string) []string {
-	bagSizes := []int{2}
+	bagSizes := []int{1}
 	cm := closestmatch.New(keywords, bagSizes)
 	result := cm.ClosestN(query, 4)
 	return result

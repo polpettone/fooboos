@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+
+//TODO: tests not stable
 func Test_fuzzySearch(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -29,11 +31,24 @@ func Test_fuzzySearch(t *testing.T) {
 
 		{
 			name:     "2",
-			keywords: []string{"one", "on", "three"},
+			keywords: []string{"on", "one", "three"},
 			query:    "on",
 			want:     []string{"on", "one"},
 		},
 
+		{
+			name:     "3",
+			keywords: []string{"one", "on", "three"},
+			query:    "onez",
+			want:     []string{"one", "on", "three"},
+		},
+
+		{
+			name:     "4",
+			keywords: []string{"one", "on", "three"},
+			query:    "thr",
+			want:     []string{"three"},
+		},
 	}
 
 	for _, tt := range tests {
@@ -46,7 +61,7 @@ func Test_fuzzySearch(t *testing.T) {
 
 }
 
-func TestFooboos_search(t *testing.T) {
+func TestFoobars_search(t *testing.T) {
 
 	tests := []struct {
 		name   string
@@ -70,6 +85,15 @@ func TestFooboos_search(t *testing.T) {
 			},
 			args: "on",
 			want: []string{"one"}},
+
+		{name: "find nothing",
+			fields: map[string][]string{
+				"one": {"url0", "url1"},
+				"two": {"url0", "url1"},
+			},
+			args: "o",
+			want: []string{""}},
+
 	}
 
 	for _, tt := range tests {
@@ -83,4 +107,3 @@ func TestFooboos_search(t *testing.T) {
 		})
 	}
 }
-

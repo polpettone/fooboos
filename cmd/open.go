@@ -51,7 +51,18 @@ func handleOpenCommand(args []string) {
 	urls, found := fooboos.Entries[keyword]
 
 	if !found {
-		fmt.Printf("no bookmark found for keyword %s", keyword)
+
+		fmt.Printf("no bookmark found for keyword %s \n", keyword)
+		result := fooboos.search(keyword)
+
+		if result != nil {
+			output := ""
+			for _, v := range result {
+				output += v + "\n"
+			}
+			fmt.Printf("\nprobably you mean some of them:\n%s", output)
+		}
+
 		return
 	}
 
