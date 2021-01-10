@@ -48,13 +48,15 @@ func handleSearchCommand(args []string) (string, error) {
 	fooboos, err := loadFooboos(fooboosFile)
 
 	if err != nil {
-		fmt.Printf("%v", err)
 		return "", err
 	}
 
 	result := fooboos.search(args[0])
 
-	output := fmt.Sprintf("Result: %v", result)
+	output := ""
+	for _, v := range result {
+		output += v + "\n"
+	}
 
 	return output, nil
 }
