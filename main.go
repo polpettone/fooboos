@@ -17,7 +17,6 @@ package main
 
 import "github.com/polpettone/fooboos/cmd"
 
-
 func main() {
 	cmd.Execute()
 }

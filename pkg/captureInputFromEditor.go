@@ -1,6 +1,5 @@
 package pkg
 
-
 import (
 	"io/ioutil"
 	"os"
