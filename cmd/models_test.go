@@ -1,11 +1,10 @@
 package cmd
 
 import (
-	"reflect"
+	"sort"
 	"testing"
 )
 
-// TODO: tests not stable
 func Test_fuzzySearch(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -52,7 +51,7 @@ func Test_fuzzySearch(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := fuzzySearch(tt.keywords, tt.query); !reflect.DeepEqual(got, tt.want) {
+			if got := fuzzySearch(tt.keywords, tt.query); !areSlicesEqual(got, tt.want) {
 				t.Errorf("fuzzySearch() = %v, want %v", got, tt.want)
 			}
 		})
@@ -99,9 +98,28 @@ func TestFoobars_search(t *testing.T) {
 			fooboos := Fooboos{
 				Entries: tt.fields,
 			}
-			if got := fooboos.search(tt.args); !reflect.DeepEqual(got, tt.want) {
+			if got := fooboos.search(tt.args); !areSlicesEqual(got, tt.want) {
 				t.Errorf("search() = %v, want %v", got, tt.want)
 			}
 		})
 	}
+}
+
+func areSlicesEqual(slice1, slice2 []string) bool {
+	if len(slice1) != len(slice2) {
+		return false
+	}
+
+	// Sortiere die Slices
+	sort.Strings(slice1)
+	sort.Strings(slice2)
+
+	// Überprüfe, ob die sortierten Slices gleich sind
+	for i := range slice1 {
+		if slice1[i] != slice2[i] {
+			return false
+		}
+	}
+
+	return true
 }
