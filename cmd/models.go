@@ -14,8 +14,8 @@ func (fooboos Fooboos) search(query string) []string {
 
 	result := fuzzySearch(keywords, query)
 
-	if len(result) == 1 && result[0] == ""{
-		return nil
+	if len(result) == 1 && result[0] == "" {
+		return []string{}
 	}
 
 	return result

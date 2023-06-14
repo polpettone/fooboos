@@ -5,8 +5,7 @@ import (
 	"testing"
 )
 
-
-//TODO: tests not stable
+// TODO: tests not stable
 func Test_fuzzySearch(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -92,8 +91,7 @@ func TestFoobars_search(t *testing.T) {
 				"two": {"url0", "url1"},
 			},
 			args: "o",
-			want: []string{""}},
-
+			want: []string{}},
 	}
 
 	for _, tt := range tests {
