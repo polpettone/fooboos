@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,8 +17,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/spf13/cobra"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
@@ -43,7 +44,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.fooboos/config.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.config/fooboos/config.yaml)")
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
@@ -63,7 +64,7 @@ func initConfig() {
 		// Search config in home directory with name ".fooboos" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".fooboos/config.yaml")
+		viper.SetConfigName(".config/fooboos/config.yaml")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
@@ -73,7 +74,7 @@ func initConfig() {
 	} else {
 
 		out := `No Config file found
-Provide a config file named config.yml in $HOME/.fooboos/
+Provide a config file named config.yml in $HOME/.config/fooboos/
 Format yaml
 Content
 	path_to_fooboos: <path>
