@@ -1,12 +1,13 @@
 package cmd
 
 import (
+	"os"
+
 	"gopkg.in/yaml.v2"
-	"io/ioutil"
 )
 
 func loadFooboos(file string) (*Fooboos, error) {
-	content, err := ioutil.ReadFile(file)
+	content, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err
 	}
@@ -19,7 +20,7 @@ func loadFooboos(file string) (*Fooboos, error) {
 }
 
 func loadRaw(file string) ([]byte, error) {
-	content, err := ioutil.ReadFile(file)
+	content, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err
 	}
@@ -27,6 +28,6 @@ func loadRaw(file string) ([]byte, error) {
 }
 
 func writeRaw(file string, content []byte) error {
-	err := ioutil.WriteFile(file, content, 744)
+	err := os.WriteFile(file, content, 744)
 	return err
 }

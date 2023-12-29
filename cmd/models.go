@@ -8,7 +8,7 @@ type Fooboos struct {
 
 func (fooboos Fooboos) search(query string) []string {
 	var keywords []string
-	for k, _ := range fooboos.Entries {
+	for k := range fooboos.Entries {
 		keywords = append(keywords, k)
 	}
 
